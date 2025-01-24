@@ -10,7 +10,7 @@ function Landing() {
       <Navbar active={"home"}/>
       <div className={styles.landing__wrapper}>
         <div className={styles.landing__text}> 
-          <h1>Schedule your daily tasks with <span class="primaryText">DoDo!</span></h1>
+          <h1>Schedule your daily tasks with <span className="primaryText">DoDo!</span></h1>
           <div className='btnWrapper'>
             <Link to="/register" className="primaryBtn">Register</Link>
             <Link to="/login" className="secondaryBtn">Login</Link>

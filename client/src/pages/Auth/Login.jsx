@@ -3,20 +3,36 @@ import styles from './Login.module.css'
 import login from '../../assets/login.png'
 import {Button, Input} from 'antd'
 import { Link } from 'react-router'
+import AuthServices from '../../services/authServices'
 
 function Login() {
   const [username,setUsername] = useState("");
   const [password,setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = ()=> {
+  const handleSubmit = async ()=> {
     console.log("Login");
+
+    try {
+      setLoading(true); //loading while waiting for response
+      let data = {
+          username,
+          password
+      }
+      const response = await AuthServices.loginUser(data);
+      console.log(response.data);
+      setLoading(false); // exit loading after getting response
+    }catch(err) {
+      console.log(err);
+      setLoading(false); // or exit loading after getting an error
+    }
   }
 
   return (
     <div className={styles.login__card}>
       <img src={login} alt=".."/>
 
-      <h4>Login</h4>
+      <h2>Login</h2>
 
       <div className={styles.input__wrapper}>
         <Input 
@@ -34,7 +50,7 @@ function Login() {
         New Use? <Link to="/register"> Register </Link>
       </div>
 
-      <Button type="primary" size="large" disabled={!username || !password} onClick={handleSubmit}>Login</Button>
+      <Button loading={loading} type="primary" size="large" disabled={!username || !password} onClick={handleSubmit}>Login</Button>
     </div>
   )
 }

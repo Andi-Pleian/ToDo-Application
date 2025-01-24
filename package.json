@@ -17,6 +17,8 @@
     "express": "^4.21.2",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.9.5",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "reactapp": "file:",
     "web-vitals": "^4.2.4"
   }
